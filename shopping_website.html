@@ -50,4 +50,218 @@
         <p>Bright and cheerful birthday flowers</p>
       </div>
       <div class="category-card" onclick="filterProducts('sympathy')">
-        <div class="category-icon">
+        <div class="category-icon">🕊️</div>
+        <h3>Sympathy</h3>
+        <p>Peaceful arrangements for remembrance</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="products" id="products">
+    <div class="products-container">
+      <h2>Featured Flowers</h2>
+      <div class="products-grid" id="productsGrid">
+        <!-- Products will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Modal -->
+  <div class="modal" id="cartModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Shopping Cart</h2>
+        <button class="close-modal" onclick="toggleCart()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="cartItems">
+          <p style="text-align: center; color: #999; padding: 2rem;">Your cart is empty</p>
+        </div>
+        <div class="cart-total" id="cartTotal">Total: $0.00</div>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div class="modal" id="profileModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>My Profile</h2>
+        <button class="close-modal" onclick="toggleProfile()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Profile Information -->
+        <div class="profile-section">
+          <h3>Personal Information</h3>
+          <div class="profile-info">
+            <div class="info-item">
+              <span class="info-label">Name:</span>
+              <span class="info-value" id="userName">Sarah Johnson</span>
+              <button class="edit-btn">Edit</button>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Email:</span>
+              <span class="info-value" id="userEmail">sarah.j@email.com</span>
+              <button class="edit-btn">Edit</button>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Phone:</span>
+              <span class="info-value" id="userPhone">+1 (555) 123-4567</span>
+              <button class="edit-btn">Edit</button>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Address:</span>
+              <span class="info-value" id="userAddress">123 Garden St, Flower City</span>
+              <button class="edit-btn">Edit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order History -->
+        <div class="profile-section">
+          <h3>Recent Orders</h3>
+          <div class="profile-info">
+            <div class="info-item">
+              <span class="info-label">Order #1234</span>
+              <span class="info-value">Red Rose Bouquet - $45.99</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Order #1235</span>
+              <span class="info-value">Wedding Package - $299.99</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Order #1236</span>
+              <span class="info-value">Birthday Arrangement - $65.99</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="profile-section">
+          <h3>Settings</h3>
+          <div class="setting-item">
+            <span class="setting-label">Email Notifications</span>
+            <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <span class="setting-label">SMS Notifications</span>
+            <div class="toggle-switch" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <span class="setting-label">Marketing Emails</span>
+            <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+          </div>
+          <div class="setting-item">
+            <span class="setting-label">Preferred Language</span>
+            <select class="select-input">
+              <option>English</option>
+              <option>Spanish</option>
+              <option>French</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <span class="setting-label">Currency</span>
+            <select class="select-input">
+              <option>USD ($)</option>
+              <option>EUR (€)</option>
+              <option>GBP (£)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Account Actions -->
+        <div class="profile-section">
+          <h3>Account</h3>
+          <div class="setting-item">
+            <button class="cta-button" style="margin: 0.5rem; padding: 0.8rem 1.5rem;">Change Password</button>
+          </div>
+          <div class="setting-item">
+            <button class="cta-button" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: #ff4757;">Sign Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Flowers</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Occasions</h3>
+        <ul>
+          <li><a href="#">Weddings</a></li>
+          <li><a href="#">Birthdays</a></li>
+          <li><a href="#">Anniversaries</a></li>
+          <li><a href="#">Sympathy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Customer Care</h3>
+        <ul>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li>📧 hello@flowerparadise.com</li>
+          <li>📞 +1 (555) FLOWERS</li>
+          <li>📍 456 Bloom Avenue, Garden City</li>
+          <li>🕒 Daily 7AM-8PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Flower Paradise. Spreading beauty one flower at a time.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Flower products data (your original list continues here)
+    const flowers = [
+      { id: 1, name: "Classic Red Rose Bouquet", price: 45.99, category: "roses", description: "A dozen beautiful red roses arranged with baby's breath and greenery.", icon: "🌹" },
+      { id: 2, name: "Elegant Wedding Centerpiece", price: 89.99, category: "wedding", description: "Sophisticated white and cream flowers perfect for wedding tables.", icon: "💐" },
+      { id: 3, name: "Cheerful Birthday Mix", price: 39.99, category: "birthday", description: "Bright and colorful mixed flowers to celebrate special birthdays.", icon: "🌻" },
+      { id: 4, name: "Peaceful Lily Arrangement", price: 65.99, category: "sympathy", description: "Serene white lilies and soft greenery for moments of remembrance.", icon: "🌸" },
+      { id: 5, name: "Pink Rose Garden", price: 52.99, category: "roses", description: "Soft pink roses with eucalyptus in a rustic arrangement.", icon: "🌹" },
+      { id: 6, name: "Bridal Bouquet Deluxe", price: 129.99, category: "wedding", description: "Luxurious bridal bouquet with premium white flowers and ribbons.", icon: "💐" },
+      // Continue your items...
+    ];
+
+    // --- Minimal JS hooks you already had ---
+    function toggleCart() {
+      const modal = document.getElementById('cartModal');
+      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+    function toggleProfile() {
+      const modal = document.getElementById('profileModal');
+      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+    function toggleSetting(el) {
+      el.classList.toggle('active');
+    }
+    function checkout(){ alert('Proceeding to checkout...'); }
+    function filterProducts(category){ /* your filtering logic */ }
+
+    // Close modals when clicking outside
+    window.addEventListener('click', (e) => {
+      const cart = document.getElementById('cartModal');
+      const profile = document.getElementById('profileModal');
+      if (e.target === cart) cart.style.display = 'none';
+      if (e.target === profile) profile.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
