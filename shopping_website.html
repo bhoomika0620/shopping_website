@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flower Paradise - Fresh Flowers Delivered</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">🌸 Flower Paradise</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Flowers</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="user-controls">
+        <button class="profile-icon" onclick="toggleProfile()">👤</button>
+        <button class="cart-icon" onclick="toggleCart()">🛒 <span class="cart-count" id="cartCount">0</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1 class="bounce">Beautiful Flowers Delivered</h1>
+      <p>Fresh, gorgeous flowers for every occasion. Handpicked and delivered with love to make your special moments unforgettable.</p>
+      <a href="#products" class="cta-button">Shop Flowers</a>
+    </div>
+  </section>
+
+  <section class="categories" id="categories">
+    <h2>Shop by Occasion</h2>
+    <div class="category-grid">
+      <div class="category-card" onclick="filterProducts('roses')">
+        <div class="category-icon">🌹</div>
+        <h3>Roses</h3>
+        <p>Classic red roses and romantic bouquets</p>
+      </div>
+      <div class="category-card" onclick="filterProducts('wedding')">
+        <div class="category-icon">💐</div>
+        <h3>Wedding</h3>
+        <p>Elegant arrangements for your special day</p>
+      </div>
+      <div class="category-card" onclick="filterProducts('birthday')">
+        <div class="category-icon">🎂</div>
+        <h3>Birthday</h3>
+        <p>Bright and cheerful birthday flowers</p>
+      </div>
+      <div class="category-card" onclick="filterProducts('sympathy')">
+        <div class="category-icon">
