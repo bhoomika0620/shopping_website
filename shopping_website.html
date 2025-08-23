@@ -1,267 +1,1251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flower Paradise - Fresh Flowers Delivered</title>
-  <link rel="stylesheet" href="shopping_website.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Paradise - Fresh Flowers Delivered</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e6 100%);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .user-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .cart-icon, .profile-icon {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cart-icon:hover, .profile-icon:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ffe0e6" width="1200" height="600"/><circle fill="%23ff8fab" cx="200" cy="150" r="80" opacity="0.3"/><circle fill="%23ff6b9d" cx="800" cy="200" r="100" opacity="0.2"/><circle fill="%23ffb3c6" cx="600" cy="400" r="120" opacity="0.25"/><circle fill="%23ffc2d1" cx="1000" cy="350" r="90" opacity="0.3"/></svg>');
+            background-size: cover;
+            text-align: center;
+            padding: 6rem 2rem;
+            color: #2c3e50;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #ff6b9d;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #555;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .categories h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #ff6b9d;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.2);
+            border-color: #ff8fab;
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #ff6b9d;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .category-card p {
+            color: #666;
+        }
+
+        /* Products */
+        .products {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #ff6b9d;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.2);
+            border-color: #ff8fab;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #ffe0e6, #ffb3c6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ff6b9d;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #ff4757;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            margin: 5% auto;
+            border-radius: 20px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        /* Cart Modal */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #ffe0e6;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #ff6b9d;
+        }
+
+        .cart-item-price {
+            color: #ff4757;
+            font-weight: bold;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .quantity-btn {
+            background: #ff8fab;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #ff6b9d;
+            transform: scale(1.1);
+        }
+
+        .remove-item {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .remove-item:hover {
+            background: #ff3838;
+            transform: translateY(-2px);
+        }
+
+        .cart-total {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b9d;
+            padding: 1rem;
+            background: #ffe0e6;
+            border-radius: 15px;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        /* Profile Modal */
+        .profile-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #ffe0e6;
+            border-radius: 15px;
+        }
+
+        .profile-section h3 {
+            color: #ff6b9d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .profile-info {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .edit-btn {
+            background: #ff8fab;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn:hover {
+            background: #ff6b9d;
+        }
+
+        /* Settings */
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #ffe0e6;
+        }
+
+        .setting-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #ff8fab;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s ease;
+        }
+
+        .toggle-switch.active::before {
+            left: 32px;
+        }
+
+        .select-input {
+            padding: 0.5rem 1rem;
+            border: 2px solid #ffe0e6;
+            border-radius: 25px;
+            background: white;
+            color: #555;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .select-input:focus {
+            border-color: #ff8fab;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ff8fab;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ff8fab;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
+            
+            .products-grid, .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 60%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            80% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">🌸 Flower Paradise</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#products">Flowers</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="user-controls">
-        <button class="profile-icon" onclick="toggleProfile()">👤</button>
-        <button class="cart-icon" onclick="toggleCart()">🛒 <span class="cart-count" id="cartCount">0</span></button>
-      </div>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <div class="logo">
+                🌸 Flower Paradise
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Flowers</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="user-controls">
+                <button class="profile-icon" onclick="toggleProfile()">
+                    👤
+                </button>
+                <button class="cart-icon" onclick="toggleCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1 class="bounce">Beautiful Flowers Delivered</h1>
-      <p>Fresh, gorgeous flowers for every occasion. Handpicked and delivered with love to make your special moments unforgettable.</p>
-      <a href="#products" class="cta-button">Shop Flowers</a>
-    </div>
-  </section>
-
-  <section class="categories" id="categories">
-    <h2>Shop by Occasion</h2>
-    <div class="category-grid">
-      <div class="category-card" onclick="filterProducts('roses')">
-        <div class="category-icon">🌹</div>
-        <h3>Roses</h3>
-        <p>Classic red roses and romantic bouquets</p>
-      </div>
-      <div class="category-card" onclick="filterProducts('wedding')">
-        <div class="category-icon">💐</div>
-        <h3>Wedding</h3>
-        <p>Elegant arrangements for your special day</p>
-      </div>
-      <div class="category-card" onclick="filterProducts('birthday')">
-        <div class="category-icon">🎂</div>
-        <h3>Birthday</h3>
-        <p>Bright and cheerful birthday flowers</p>
-      </div>
-      <div class="category-card" onclick="filterProducts('sympathy')">
-        <div class="category-icon">🕊️</div>
-        <h3>Sympathy</h3>
-        <p>Peaceful arrangements for remembrance</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="products" id="products">
-    <div class="products-container">
-      <h2>Featured Flowers</h2>
-      <div class="products-grid" id="productsGrid">
-        <!-- Products will be loaded here -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Cart Modal -->
-  <div class="modal" id="cartModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Shopping Cart</h2>
-        <button class="close-modal" onclick="toggleCart()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div id="cartItems">
-          <p style="text-align: center; color: #999; padding: 2rem;">Your cart is empty</p>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="bounce">Beautiful Flowers Delivered</h1>
+            <p>Fresh, gorgeous flowers for every occasion. Handpicked and delivered with love to make your special moments unforgettable.</p>
+            <a href="#products" class="cta-button">Shop Flowers</a>
         </div>
-        <div class="cart-total" id="cartTotal">Total: $0.00</div>
-        <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Profile Modal -->
-  <div class="modal" id="profileModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>My Profile</h2>
-        <button class="close-modal" onclick="toggleProfile()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <!-- Profile Information -->
-        <div class="profile-section">
-          <h3>Personal Information</h3>
-          <div class="profile-info">
-            <div class="info-item">
-              <span class="info-label">Name:</span>
-              <span class="info-value" id="userName">Sarah Johnson</span>
-              <button class="edit-btn">Edit</button>
+    <section class="categories" id="categories">
+        <h2>Shop by Occasion</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="filterProducts('roses')">
+                <div class="category-icon">🌹</div>
+                <h3>Roses</h3>
+                <p>Classic red roses and romantic bouquets</p>
             </div>
-            <div class="info-item">
-              <span class="info-label">Email:</span>
-              <span class="info-value" id="userEmail">sarah.j@email.com</span>
-              <button class="edit-btn">Edit</button>
+            <div class="category-card" onclick="filterProducts('wedding')">
+                <div class="category-icon">💐</div>
+                <h3>Wedding</h3>
+                <p>Elegant arrangements for your special day</p>
             </div>
-            <div class="info-item">
-              <span class="info-label">Phone:</span>
-              <span class="info-value" id="userPhone">+1 (555) 123-4567</span>
-              <button class="edit-btn">Edit</button>
+            <div class="category-card" onclick="filterProducts('birthday')">
+                <div class="category-icon">🎂</div>
+                <h3>Birthday</h3>
+                <p>Bright and cheerful birthday flowers</p>
             </div>
-            <div class="info-item">
-              <span class="info-label">Address:</span>
-              <span class="info-value" id="userAddress">123 Garden St, Flower City</span>
-              <button class="edit-btn">Edit</button>
+            <div class="category-card" onclick="filterProducts('sympathy')">
+                <div class="category-icon">🕊️</div>
+                <h3>Sympathy</h3>
+                <p>Peaceful arrangements for remembrance</p>
             </div>
-          </div>
         </div>
+    </section>
 
-        <!-- Order History -->
-        <div class="profile-section">
-          <h3>Recent Orders</h3>
-          <div class="profile-info">
-            <div class="info-item">
-              <span class="info-label">Order #1234</span>
-              <span class="info-value">Red Rose Bouquet - $45.99</span>
+    <section class="products" id="products">
+        <div class="products-container">
+            <h2>Featured Flowers</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
             </div>
-            <div class="info-item">
-              <span class="info-label">Order #1235</span>
-              <span class="info-value">Wedding Package - $299.99</span>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shopping Cart</h2>
+                <button class="close-modal" onclick="toggleCart()">&times;</button>
             </div>
-            <div class="info-item">
-              <span class="info-label">Order #1236</span>
-              <span class="info-value">Birthday Arrangement - $65.99</span>
+            <div class="modal-body">
+                <div id="cartItems">
+                    <p style="text-align: center; color: #999; padding: 2rem;">Your cart is empty</p>
+                </div>
+                <div class="cart-total" id="cartTotal">
+                    Total: $0.00
+                </div>
+                <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
             </div>
-          </div>
         </div>
+    </div>
 
-        <!-- Settings -->
-        <div class="profile-section">
-          <h3>Settings</h3>
-          <div class="setting-item">
-            <span class="setting-label">Email Notifications</span>
-            <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
-          </div>
-          <div class="setting-item">
-            <span class="setting-label">SMS Notifications</span>
-            <div class="toggle-switch" onclick="toggleSetting(this)"></div>
-          </div>
-          <div class="setting-item">
-            <span class="setting-label">Marketing Emails</span>
-            <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
-          </div>
-          <div class="setting-item">
-            <span class="setting-label">Preferred Language</span>
-            <select class="select-input">
-              <option>English</option>
-              <option>Spanish</option>
-              <option>French</option>
-            </select>
-          </div>
-          <div class="setting-item">
-            <span class="setting-label">Currency</span>
-            <select class="select-input">
-              <option>USD ($)</option>
-              <option>EUR (€)</option>
-              <option>GBP (£)</option>
-            </select>
-          </div>
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>My Profile</h2>
+                <button class="close-modal" onclick="toggleProfile()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Profile Information -->
+                <div class="profile-section">
+                    <h3>Personal Information</h3>
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <span class="info-label">Name:</span>
+                            <span class="info-value" id="userName">Sarah Johnson</span>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value" id="userEmail">sarah.j@email.com</span>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Phone:</span>
+                            <span class="info-value" id="userPhone">+1 (555) 123-4567</span>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Address:</span>
+                            <span class="info-value" id="userAddress">123 Garden St, Flower City</span>
+                            <button class="edit-btn">Edit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order History -->
+                <div class="profile-section">
+                    <h3>Recent Orders</h3>
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <span class="info-label">Order #1234</span>
+                            <span class="info-value">Red Rose Bouquet - $45.99</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Order #1235</span>
+                            <span class="info-value">Wedding Package - $299.99</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Order #1236</span>
+                            <span class="info-value">Birthday Arrangement - $65.99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="profile-section">
+                    <h3>Settings</h3>
+                    <div class="setting-item">
+                        <span class="setting-label">Email Notifications</span>
+                        <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">SMS Notifications</span>
+                        <div class="toggle-switch" onclick="toggleSetting(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">Marketing Emails</span>
+                        <div class="toggle-switch active" onclick="toggleSetting(this)"></div>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">Preferred Language</span>
+                        <select class="select-input">
+                            <option>English</option>
+                            <option>Spanish</option>
+                            <option>French</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">Currency</span>
+                        <select class="select-input">
+                            <option>USD ($)</option>
+                            <option>EUR (€)</option>
+                            <option>GBP (£)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Account Actions -->
+                <div class="profile-section">
+                    <h3>Account</h3>
+                    <div class="setting-item">
+                        <button class="cta-button" style="margin: 0.5rem; padding: 0.8rem 1.5rem;">Change Password</button>
+                    </div>
+                    <div class="setting-item">
+                        <button class="cta-button" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: #ff4757;">Sign Out</button>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Account Actions -->
-        <div class="profile-section">
-          <h3>Account</h3>
-          <div class="setting-item">
-            <button class="cta-button" style="margin: 0.5rem; padding: 0.8rem 1.5rem;">Change Password</button>
-          </div>
-          <div class="setting-item">
-            <button class="cta-button" style="margin: 0.5rem; padding: 0.8rem 1.5rem; background: #ff4757;">Sign Out</button>
-          </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Flowers</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Occasions</h3>
+                <ul>
+                    <li><a href="#">Weddings</a></li>
+                    <li><a href="#">Birthdays</a></li>
+                    <li><a href="#">Anniversaries</a></li>
+                    <li><a href="#">Sympathy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Care</h3>
+                <ul>
+                    <li><a href="#">Delivery Info</a></li>
+                    <li><a href="#">Care Instructions</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li>📧 hello@flowerparadise.com</li>
+                    <li>📞 +1 (555) FLOWERS</li>
+                    <li>📍 456 Bloom Avenue, Garden City</li>
+                    <li>🕒 Daily 7AM-8PM</li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Flower Paradise. Spreading beauty one flower at a time.</p>
+        </div>
+    </footer>
 
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#products">Flowers</a></li>
-          <li><a href="#categories">Categories</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Occasions</h3>
-        <ul>
-          <li><a href="#">Weddings</a></li>
-          <li><a href="#">Birthdays</a></li>
-          <li><a href="#">Anniversaries</a></li>
-          <li><a href="#">Sympathy</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Customer Care</h3>
-        <ul>
-          <li><a href="#">Delivery Info</a></li>
-          <li><a href="#">Care Instructions</a></li>
-          <li><a href="#">Returns</a></li>
-          <li><a href="#">Support</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <ul>
-          <li>📧 hello@flowerparadise.com</li>
-          <li>📞 +1 (555) FLOWERS</li>
-          <li>📍 456 Bloom Avenue, Garden City</li>
-          <li>🕒 Daily 7AM-8PM</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Flower Paradise. Spreading beauty one flower at a time.</p>
-    </div>
-  </footer>
+    <script>
+        // Flower products data
+        const flowers = [
+            {
+                id: 1,
+                name: "Classic Red Rose Bouquet",
+                price: 45.99,
+                category: "roses",
+                description: "A dozen beautiful red roses arranged with baby's breath and greenery.",
+                icon: "🌹"
+            },
+            {
+                id: 2,
+                name: "Elegant Wedding Centerpiece",
+                price: 89.99,
+                category: "wedding",
+                description: "Sophisticated white and cream flowers perfect for wedding tables.",
+                icon: "💐"
+            },
+            {
+                id: 3,
+                name: "Cheerful Birthday Mix",
+                price: 39.99,
+                category: "birthday",
+                description: "Bright and colorful mixed flowers to celebrate special birthdays.",
+                icon: "🌻"
+            },
+            {
+                id: 4,
+                name: "Peaceful Lily Arrangement",
+                price: 65.99,
+                category: "sympathy",
+                description: "Serene white lilies and soft greenery for moments of remembrance.",
+                icon: "🌸"
+            },
+            {
+                id: 5,
+                name: "Pink Rose Garden",
+                price: 52.99,
+                category: "roses",
+                description: "Soft pink roses with eucalyptus in a rustic arrangement.",
+                icon: "🌹"
+            },
+            {
+                id: 6,
+                name: "Bridal Bouquet Deluxe",
+                price: 129.99,
+                category: "wedding",
+                description: "Luxurious bridal bouquet with premium white flowers and ribbons.",
+                icon: "💐"
+            },
+            {
+                id: 7,
+                name: "Sunflower Surprise",
+                price: 34.99,
+                category: "birthday",
+                description: "Bright sunflowers with seasonal accents for joyful celebrations.",
+                icon: "🌻"
+            },
+            {
+                id: 8,
+                name: "Memorial Wreath",
+                price: 95.99,
+                category: "sympathy",
+                description: "Beautiful circular wreath with white chrysanthemums and greenery.",
+                icon: "🕊️"
+            },
+            {
+                id: 9,
+                name: "Romantic Pink & White",
+                price: 58.99,
+                category: "roses",
+                description: "Mixed pink and white roses with delicate filler flowers.",
+                icon: "🌹"
+            },
+            {
+                id: 10,
+                name: "Garden Party Centerpiece",
+                price: 75.99,
+                category: "wedding",
+                description: "Rustic garden-style arrangement with seasonal blooms.",
+                icon: "💐"
+            },
+            {
+                id: 11,
+                name: "Rainbow Birthday Bouquet",
+                price: 42.99,
+                category: "birthday",
+                description: "Vibrant multicolored flowers to brighten any birthday celebration.",
+                icon: "🌈"
+            },
+            {
+                id: 12,
+                name: "Graceful Orchid Display",
+                price: 78.99,
+                category: "sympathy",
+                description: "Elegant white orchids in a peaceful, lasting arrangement.",
+                icon: "🌸"
+            }
+        ];
 
-  <script>
-    // Flower products data (your original list continues here)
-    const flowers = [
-      { id: 1, name: "Classic Red Rose Bouquet", price: 45.99, category: "roses", description: "A dozen beautiful red roses arranged with baby's breath and greenery.", icon: "🌹" },
-      { id: 2, name: "Elegant Wedding Centerpiece", price: 89.99, category: "wedding", description: "Sophisticated white and cream flowers perfect for wedding tables.", icon: "💐" },
-      { id: 3, name: "Cheerful Birthday Mix", price: 39.99, category: "birthday", description: "Bright and colorful mixed flowers to celebrate special birthdays.", icon: "🌻" },
-      { id: 4, name: "Peaceful Lily Arrangement", price: 65.99, category: "sympathy", description: "Serene white lilies and soft greenery for moments of remembrance.", icon: "🌸" },
-      { id: 5, name: "Pink Rose Garden", price: 52.99, category: "roses", description: "Soft pink roses with eucalyptus in a rustic arrangement.", icon: "🌹" },
-      { id: 6, name: "Bridal Bouquet Deluxe", price: 129.99, category: "wedding", description: "Luxurious bridal bouquet with premium white flowers and ribbons.", icon: "💐" },
-      // Continue your items...
-    ];
+        // Cart management
+        let cart = [];
+        let filteredFlowers = [...flowers];
 
-    // --- Minimal JS hooks you already had ---
-    function toggleCart() {
-      const modal = document.getElementById('cartModal');
-      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-    }
-    function toggleProfile() {
-      const modal = document.getElementById('profileModal');
-      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-    }
-    function toggleSetting(el) {
-      el.classList.toggle('active');
-    }
-    function checkout(){ alert('Proceeding to checkout...'); }
-    function filterProducts(category){ /* your filtering logic */ }
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(flowers);
+            updateCartDisplay();
+        });
 
-    // Close modals when clicking outside
-    window.addEventListener('click', (e) => {
-      const cart = document.getElementById('cartModal');
-      const profile = document.getElementById('profileModal');
-      if (e.target === cart) cart.style.display = 'none';
-      if (e.target === profile) profile.style.display = 'none';
-    });
-  </script>
+        // Display products
+        function displayProducts(flowersToShow) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            flowersToShow.forEach(flower => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card fade-in';
+                productCard.innerHTML = `
+                    <div class="product-image">${flower.icon}</div>
+                    <div class="product-info">
+                        <div class="product-title">${flower.name}</div>
+                        <div class="product-price">${flower.price}</div>
+                        <div class="product-description">${flower.description}</div>
+                        <button class="add-to-cart" onclick="addToCart(${flower.id})">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+        }
+
+        // Filter products by category
+        function filterProducts(category) {
+            if (category === 'all') {
+                filteredFlowers = [...flowers];
+            } else {
+                filteredFlowers = flowers.filter(flower => flower.category === category);
+            }
+            displayProducts(filteredFlowers);
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add to cart
+        function addToCart(flowerId) {
+            const flower = flowers.find(f => f.id === flowerId);
+            const existingItem = cart.find(item => item.id === flowerId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...flower,
+                    quantity: 1
+                });
+            }
+
+            updateCartDisplay();
+            showAddToCartAnimation();
+        }
+
+        // Show add to cart animation
+        function showAddToCartAnimation() {
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.style.transform = 'scale(1.2)';
+            cartIcon.style.background = '#ff4757';
+            
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+                cartIcon.style.background = 'rgba(255,255,255,0.2)';
+            }, 300);
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            updateCartModal();
+        }
+
+        // Update cart modal
+        function updateCartModal() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">Your cart is empty</p>';
+                cartTotal.textContent = 'Total: $0.00';
+                return;
+            }
+
+            let cartHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                cartHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price} each</div>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">−</button>
+                                <span style="margin: 0 1rem; font-weight: bold;">Qty: ${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="margin-bottom: 1rem; font-size: 1.2rem; font-weight: bold; color: #ff4757;">
+                                ${itemTotal.toFixed(2)}
+                            </div>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartItems.innerHTML = cartHTML;
+            cartTotal.textContent = `Total: ${total.toFixed(2)}`;
+        }
+
+        // Update quantity
+        function updateQuantity(flowerId, change) {
+            const item = cart.find(item => item.id === flowerId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(flowerId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(flowerId) {
+            cart = cart.filter(item => item.id !== flowerId);
+            updateCartDisplay();
+        }
+
+        // Toggle cart modal
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Toggle profile modal
+        function toggleProfile() {
+            const modal = document.getElementById('profileModal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Toggle settings
+        function toggleSetting(element) {
+            element.classList.toggle('active');
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleCart();
+            }
+        });
+
+        document.getElementById('profileModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleProfile();
+            }
+        });
+
+        // Checkout function
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty! 🌸');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            alert(`Thank you for your order! 🌹\n\nItems: ${itemCount}\nTotal: ${total.toFixed(2)}\n\nYour beautiful flowers will be delivered fresh within 2-4 hours!\n\nThis is a demo checkout.`);
+            
+            // Clear cart after "purchase"
+            cart = [];
+            updateCartDisplay();
+            toggleCart();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) rotateY(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateY(0deg)';
+            });
+        });
+
+        // Add floating animation to hero flowers
+        setInterval(() => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const flowers = ['🌸', '🌹', '🌻', '💐', '🌺'];
+                const flower = document.createElement('div');
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.position = 'absolute';
+                flower.style.fontSize = '2rem';
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.top = '100%';
+                flower.style.opacity = '0.7';
+                flower.style.pointerEvents = 'none';
+                flower.style.animation = 'float 8s linear forwards';
+                hero.appendChild(flower);
+                
+                setTimeout(() => {
+                    flower.remove();
+                }, 8000);
+            }
+        }, 3000);
+
+        // Add CSS for floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                from {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0.7;
+                }
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
