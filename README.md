@@ -29,10 +29,8 @@ Update LinkedIn and other social links
 
 ## Add Screenshots:
 
-<img src="images/myimage1.png" alt="Model Result" width="400" style="margin-right:20px;"/> 
-<img src="images/myimage2.png" alt="Model Result" width="400"/> <br>
-<img src="images/myimage3.png" alt="Model Result" width="400" style="margin-right:20px;"/>
-<img src="images/myimage4.png" alt="Model Result" width="400"/> <br>
+<img src="images/myimage1.png" alt="Model Result" width="400"/> &nbsp;&nbsp;&nbsp; <img src="images/myimage2.png" alt="Model Result" width="400"/> <br>
+<img src="images/myimage3.png" alt="Model Result" width="400"/> &nbsp;&nbsp;&nbsp; <img src="images/myimage4.png" alt="Model Result" width="400"/> <br>
 
 
 **Update Live Demo:** [Click Here](https://bhoomika0620.github.io/shopping_website/shopping_website.html)
